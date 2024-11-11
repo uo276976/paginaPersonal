@@ -13,23 +13,31 @@
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
     <meta charset="UTF-8">
-    <title>Página Personal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Personal de Alfonso</title>
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <header>
-        <h1>Bienvenido a mi página</h1>
         <nav>
-            <a href="index.html">Inicio</a>
+            <a href="index.html" class="active">Inicio</a>
             <a href="aficiones.html">Aficiones</a>
             <a href="proyectos.html">Proyectos</a>
             <a href="contacto.html">Contacto</a>
         </nav>
     </header>
-    <main>
-        <h2>Información Personal</h2>
-        <p>Nombre: Alfonso</p>
-        <p>Correo Electrónico: uo276976@uniovi.es</p>
+    <main class="container">
+        <!-- Sección izquierda: 75% -->
+        <section class="left">
+            <h2>INGENIERÍA WEB</h2>
+            <h1>Alfonso GL</h1>
+            <p>Soy estudiante en el máster de ingeniería web de la <a href="https://www.uniovi.es" target="_blank">Universidad de Oviedo</a>.</p>
+        </section>
+
+        <!-- Sección derecha: 25% -->
+        <aside class="right">
+            <img src="./img/escuela.jpg" alt="Foto de la escuela" class="profile-image">
+        </aside>
     </main>
     <footer>
         <p>&copy; 2024 Alf</p>

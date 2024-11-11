@@ -1,29 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyectos</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/proyectos-styles.css">
 </head>
 <body>
     <header>
-        <h1>Proyectos Desarrollados</h1>
         <nav>
             <a href="index.html">Inicio</a>
             <a href="aficiones.html">Aficiones</a>
-            <a href="proyectos.html">Proyectos</a>
+            <a href="proyectos.html" class="active">Proyectos</a>
             <a href="contacto.html">Contacto</a>
         </nav>
     </header>
     <main>
         <h2>Mis Proyectos</h2>
-        <p>Lista de proyectos:</p>
-        <ul>
-            <li><a href="https://github.com" target="_blank">ASSW</a></li>
-            <li><a href="https://github.com" target="_blank">ECW</a></li>
-            <li><a href="https://github.com" target="_blank">TFG</a></li>
+        
+        <p>En esta sección te presento algunos de los proyectos en los que he trabajado. Puedes explorar cada proyecto en GitHub.</p>
+        
+        <ul class="project-list">
+            <li>
+                <a href="https://github.com" target="_blank" class="project-item">
+                    <img src="./img/assw.jpg" alt="ASSW" class="project-image">
+                    <div class="project-content">
+                        <strong>Administración Segura de Servidores Web</strong>
+                        <p>En esta asignatura estudiamos el despliegue y administración de servidores web seguros, 
+                           así como tecnologías de automatización de infraestructuras y escalabilidad en la web.</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com" target="_blank" class="project-item">
+                    <img src="./img/ecw.jpg" alt="ECW" class="project-image">
+                    <div class="project-content">
+                        <strong>Estándares y Computación Web</strong>
+                        <p>En esta asignatura estudiamos el diseño con estándares web y tecnologías XML. 
+                           Esta página forma parte de las tareas de la asignatura.</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com" target="_blank" class="project-item">
+                    <img src="./img/tfg.jpg" alt="TFG" class="project-image">
+                    <div class="project-content">
+                        <strong>Trabajo Fin de Grado</strong>
+                        <p>Herramienta web interactiva para el tratamiento estadístico de datos de valoración intervalar. 
+                           Este proyecto incluyó el desarrollo de una plataforma para analizar y visualizar datos de intervalos.</p>
+                    </div>
+                </a>
+            </li>
         </ul>
     </main>
     <footer>

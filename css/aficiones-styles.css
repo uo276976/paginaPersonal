@@ -1,0 +1,27 @@
+main {
+    padding: 3em;
+}
+
+/* Figure styles for images */
+figure {
+    margin: 0;
+    text-align: center;
+}
+
+.hobby-section {
+    padding-bottom: 1em;;
+}
+
+.hobby-image {
+    width: 27em;
+    height: 20em;
+    object-fit: cover; 
+    border: 0.1em solid white;
+    border-radius: 0.1em;
+}
+
+figcaption {
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 0.5em;
+}
