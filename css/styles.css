@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1em;
+}
+
+nav a {
+    color: white;
+    background-color: #4CAF50;
+    margin-right: 1.5em;
+}
+
+main {
+    padding: 2em;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+}
+
+footer {
+    background-color: #f1f1f1;
+    color: black;
+    text-align: center;
+    padding: 0.05em;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos específicos para las imágenes y los títulos */
+figure {
+    display: inline-block;
+    margin: 0 1em;
+    text-align: center;
+}
+
+.hobby-image {
+    width: 27em;
+    height: 18em;
+    object-fit: cover; 
+    border: 0.1em solid white;
+    border-radius: 0.1em;
+}
+
+figcaption {
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 0.5em;
+}
