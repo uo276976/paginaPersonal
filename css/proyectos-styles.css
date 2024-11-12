@@ -33,7 +33,9 @@ main {
 }
 
 .project-content {
-    max-width: 600px;
+    max-width: 80%;
+    margin-right: 2em;
+    box-sizing: border-box;
 }
 
 .project-content strong {
@@ -58,5 +60,6 @@ main {
     color: #666;
     line-height: 1.5em;
     padding-left: 1em;
+    padding-right: 1em;
 }
 
