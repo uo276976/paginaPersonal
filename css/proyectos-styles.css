@@ -38,8 +38,8 @@ main {
     box-sizing: border-box;
 }
 
-.project-content strong {
-    font-size: 1.2em;
+.project-content h2 {
+    font-size: 1.8em;
     color: #036306;
 }
 
