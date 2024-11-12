@@ -13,8 +13,9 @@ figure {
 }
 
 .hobby-image {
-    width: 27em;
-    height: 20em;
+    width: 100%;
+    max-width: 27em;
+    height: auto;
     object-fit: cover; 
     border: 0.1em solid white;
     border-radius: 0.1em;

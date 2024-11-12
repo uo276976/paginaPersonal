@@ -25,16 +25,16 @@ main {
 }
 
 .project-image {
-    width:17em;
+    width: 100%;
+    max-width: 15em;
     height: auto;
     object-fit: cover;
     border-radius: 0.3em;
-    margin-right: 1.5em;
+    margin-right: 1em;
 }
 
 .project-content {
-    max-width: 80%;
-    margin-right: 2em;
+    max-width: 90%;
     box-sizing: border-box;
 }
 
@@ -63,3 +63,20 @@ main {
     padding-right: 1em;
 }
 
+/* Media query for small screens */
+@media (max-width: 768px) {
+    .project-item {
+        display: block;
+        text-align: center;
+    }
+
+    .project-image {
+        margin: 0 auto 1em; /* Center the image and add space below it */
+        max-width: 100%; /* Make image fill the container */
+    }
+
+    .project-content {
+        max-width: 100%;
+        margin: 0;
+    }
+}
