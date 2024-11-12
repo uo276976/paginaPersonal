@@ -4,8 +4,9 @@ main {
 
 .mapa-responsivo {
     position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+    width: 90%; 
+    padding-bottom: 50.625%; /* Relación de aspecto 16:9 */
+    margin: 0 auto; /* Centra el contenedor */
 }
 
 .mapa-responsivo iframe {
