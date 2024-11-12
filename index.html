@@ -20,28 +20,33 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="#" class="active">Inicio</a>
+        <nav role="navigation" aria-label="Menú principal">
+            <a href="#" class="active" aria-current="page">Inicio</a>
             <a href="pages/aficiones.html">Aficiones</a>
             <a href="pages/proyectos.html">Proyectos</a>
             <a href="pages/contacto.html">Contacto</a>
         </nav>
     </header>
-    <main class="container">
+
+    <main class="container" role="main">
         <!-- Sección izquierda: 70% -->
         <section class="left">
             <h2>INGENIERÍA WEB</h2>
             <h1>Alfonso GL</h1>
-            <p>Soy estudiante en el máster de ingeniería web de la <a href="https://www.uniovi.es" target="_blank">Universidad de Oviedo</a>.</p>
+            <p>Soy estudiante en el máster de ingeniería web de la 
+               <a href="https://www.uniovi.es" target="_blank">Universidad de Oviedo</a>.
+            </p>
         </section>
 
         <!-- Sección derecha: 30% -->
-        <aside class="right">
-            <img src="img/escuela.jpg" alt="Foto de la escuela" class="profile-image">
+        <aside class="right" role="complementary" aria-label="Imagen lateral">
+            <img src="img/escuela.jpg" alt="Foto de la escuela donde estudio" class="lateral-image">
         </aside>
     </main>
+
     <footer>
         <p>&copy; 2024 Alf</p>
     </footer>
+
 </body>
 </html>

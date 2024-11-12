@@ -5,7 +5,7 @@
     overflow: auto;  
 }
 
-/* Sección izquierda (75%) */
+/* Sección izquierda (70%) */
 .left {
     width: 70%;
     padding: 2em;
@@ -33,7 +33,7 @@
     max-width: 40em;
 }
 
-/* Sección derecha (25%) */
+/* Sección derecha (30%) */
 .right {
     width: 30%;
     height: 100%;
@@ -41,7 +41,7 @@
     position: relative;
 }
 
-.profile-image {
+.lateral-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
