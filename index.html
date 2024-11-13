@@ -12,6 +12,14 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+    <script>
+        function performSearch() {
+            const query = document.getElementById("searchInput").value;
+            if (query) {
+                window.location.href = `/pages/resultadosDeBusqueda.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+    </script>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Personal de Alfonso</title>
@@ -26,14 +34,18 @@
             <a href="pages/proyectos.html">Proyectos</a>
             <a href="pages/contacto.html">Contacto</a>
         </nav>
-    </header>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar...">
+            <button id="searchButton" onclick="performSearch()">Buscar</button>
+        </div> 
+    </header>    
 
     <main class="container">
         <!-- Sección izquierda: 70% -->
         <section class="left">
-            <h1>INGENIERÍA WEB</h1>
-            <h2>Alfonso GL</h2>
-            <p>Soy estudiante en el máster de ingeniería web de la 
+            <h1 id="ingenieria">INGENIERÍA WEB</h1>
+            <h2 id="autor">Alfonso GL</h2>
+            <p id="estudiante">Soy estudiante en el máster de ingeniería web de la 
                <a href="https://www.uniovi.es" target="_blank">Universidad de Oviedo</a>.
             </p>
         </section>

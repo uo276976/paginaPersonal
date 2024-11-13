@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsqueda</title>
+    <link rel="stylesheet" href="../css/resultados-styles.css" type="text/css">
+    <link rel="stylesheet" href="../css/styles.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav aria-label="Menú principal">
+            <a href="#" class="active" aria-current="page">Inicio</a>
+            <a href="pages/aficiones.html">Aficiones</a>
+            <a href="pages/proyectos.html">Proyectos</a>
+            <a href="pages/contacto.html">Contacto</a>
+        </nav>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar...">
+            <button id="searchButton" onclick="performSearch()">Buscar</button>
+        </div> 
+    </header>    
+
+    <main id="searchResultsContainer">
+        <h1>Resultados de Búsqueda</h1>
+        <!-- Results will be dynamically added here -->
+    </main>
+    <script>
+        $(document).ready(function () {
+        // Retrieve search term from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchTerm = urlParams.get('q')?.toLowerCase();
+        
+        if (searchTerm) {
+            const pages = [
+                'aficiones.html',
+                'proyectos.html',
+                'contacto.html',
+                '../'
+            ];
+
+            pages.forEach(page => {
+                $.get(page, function (data) {
+                    const pageContent = $(data);
+                    const matches = [];
+                    
+                    // Find all paragraphs and headings in the page content
+                    pageContent.find("p, h1, h2, h3, h4, h5, h6, figcaption").each(function () {
+                        const content = $(this).text().toLowerCase();
+                        const distance = levenshteinDistance(searchTerm, content);
+
+                        // Show results with exact match or close matches
+                        if (content.includes(searchTerm) || distance <= 1) {
+                            const snippet = $(this).text().substring(0, 100) + "...";
+                            const elementId = $(this).attr("id") || "";  // Grab the element ID (if available)
+                            matches.push({
+                                snippet: snippet,
+                                url: `${page}#${elementId}`
+                            });
+                        }
+                    });
+
+                    // Display matches
+                    if (matches.length > 0) {
+                        $('#searchResultsContainer').append(`<h2>Resultados en ${page}</h2>`);
+                        matches.forEach(match => {
+                            $('#searchResultsContainer').append(`
+                                <p><a href="${match.url}">${match.snippet}</a></p>
+                            `);
+                        });
+                    }
+                });
+            });
+        }
+    });
+
+    // Levenshtein distance function to find close matches
+    function levenshteinDistance(a, b) {
+        const matrix = [];
+        let i, j;
+        
+        for (i = 0; i <= b.length; i++) {
+            matrix[i] = [i];
+        }
+        for (j = 0; j <= a.length; j++) {
+            matrix[0][j] = j;
+        }
+        for (i = 1; i <= b.length; i++) {
+            for (j = 1; j <= a.length; j++) {
+                if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else {
+                    matrix[i][j] = Math.min(
+                        matrix[i - 1][j - 1] + 1,
+                        matrix[i][j - 1] + 1,
+                        matrix[i - 1][j] + 1
+                    );
+                }
+            }
+        }
+        return matrix[b.length][a.length];
+    }
+    </script>
+</body>
+</html>
