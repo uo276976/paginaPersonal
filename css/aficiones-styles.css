@@ -1,5 +1,5 @@
 main {
-    padding: 0 3em;
+    padding: 0 3.2em;
 }
 
 /* Figure styles for images */
@@ -9,7 +9,10 @@ figure {
 }
 
 .hobby-section {
-    padding-bottom: 1em;;
+    border: 0.2em solid #ddd;
+    padding: 0 1em;
+    border-radius: 0.5em;
+    margin-bottom: 2em;
 }
 
 .hobby-image {

@@ -40,9 +40,11 @@
         </div> 
     </header>    
 
-    <main id="searchResultsContainer">
-        <h1>Resultados de Búsqueda</h1>
-        <!-- Results will be dynamically added here -->
+    <main>
+        <section id="searchResultsContainer">
+            <h1>Resultados de Búsqueda</h1>
+            <!-- Results will be dynamically added here -->
+        </section>
     </main>
     <script>
         $(document).ready(function () {
@@ -80,7 +82,7 @@
 
                     // Display matches
                     if (matches.length > 0) {
-                        $('#searchResultsContainer').append(`<h2>Resultados en ${page}</h2>`);
+                        $('#searchResultsContainer').append(`<h2>- Resultados en ${page}</h2>`);
                         matches.forEach(match => {
                             $('#searchResultsContainer').append(`
                                 <p><a href="${match.url}">${match.snippet}</a></p>
