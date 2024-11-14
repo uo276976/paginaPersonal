@@ -51,7 +51,7 @@ ul {
 }
 
 /* Media Query for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 740px) {
     header {
         flex-direction: row; 
         align-items: flex-start;
@@ -70,6 +70,43 @@ ul {
     nav a {
         margin-right: 0;
         margin-bottom: 0.5em; 
+    }
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 380px) {
+    header {
+        flex-direction: column; /* Stack nav and search bar vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .search-bar {
+        margin-top: 1em; /* Space between nav and search bar */
+        width: 100%; /* Ensure search bar takes full width of container */
+        flex-direction: row; /* Align input and button horizontally */
+    }
+
+    .search-bar input[type="text"] {
+        font-size: 1em; /* Reduce font size to fit smaller screens */
+        padding: 0.5em; /* Reduce padding */
+        width: calc(100% - 2em); /* Adjust width to leave room for the button */
+        box-sizing: border-box; /* Ensure padding is included in width */
+    }
+
+    .search-bar button {
+        font-size: 1em; /* Reduce font size */
+        padding: 0.5em; /* Reduce padding */
+        margin-left: 0.5em; /* Space between input and button */
+    }
+
+    nav {
+        flex-direction: column; /* Stack nav items vertically */
+        width: 100%; /* Make the nav full width */
+    }
+
+    nav a {
+        margin-right: 0; /* Remove margin between nav items */
+        margin-bottom: 0.5em; /* Add space between nav items */
     }
 }
 
