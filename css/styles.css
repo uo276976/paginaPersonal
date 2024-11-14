@@ -1,7 +1,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    padding-top: 5em;
+    padding-top: 3em;
     font-family: Arial, sans-serif;
     height: 100%;
     scroll-behavior: smooth;
@@ -10,7 +10,7 @@ body, html {
 header {
     background-color: #036306;
     color: white;
-    padding: 1em;
+    padding: 1em 2em;
     position: fixed;
     top: 0;
     left: 0;
@@ -19,7 +19,6 @@ header {
     display: flex;
     align-items: center; /* Center vertically */
     justify-content: space-between; /* Nav on left, search-bar on right */
-    padding: 1em 2em;
 }
 
 nav {
