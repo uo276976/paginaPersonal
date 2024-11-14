@@ -88,6 +88,35 @@ footer {
     border: 0;
 }
 
+/* Search Bar Styling */
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input[type="text"] {
+    font-size: 1.2em;
+    border: 0.2em solid #ccc;
+    border-radius: 0.5em;
+    padding: 0.2em;
+}
+
+.search-bar button {
+    font-size: 1.2em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0.5em;
+    cursor: pointer;
+    margin-left: 0.3em;
+    margin-right: 3em;
+}
+
+.highlight {
+    background-color: yellow;
+    transition: background-color 1s ease;
+}
+
 :target {
     background-color: yellow; /* Highlight element when focused */
     transition: background-color 1s ease;
