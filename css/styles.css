@@ -97,23 +97,35 @@ footer {
     align-items: center;
 }
 
+.search-bar {
+    display: flex;
+    align-items: center;
+    height: 2.8em; /* Adjust height as needed */
+}
+
 .search-bar input[type="text"] {
     font-size: 1.2em;
-    border: 0.2em solid #ccc;
+    border: 0.2em solid white;
     border-radius: 0.5em;
-    padding: 0.2em;
+    padding: 0.5em; /* Adjust padding for better alignment */
+    height: 100%;
+    flex-grow: 1; /* Ensures input takes available width */
 }
 
 .search-bar button {
     font-size: 1.2em;
-    background-color: #007bff;
-    color: white;
+    background-color: white;
+    color: black; /* Button text color */
     border: none;
     border-radius: 0.5em;
     cursor: pointer;
     margin-left: 0.3em;
-    margin-right: 3em;
+    height: 100%; /* Make the button the same height as the input */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 :target {
     animation: highlight 3s;
