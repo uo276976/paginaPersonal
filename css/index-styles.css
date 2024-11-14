@@ -36,8 +36,10 @@
 /* Sección derecha (30%) */
 .right {
     width: 30%;
-    height: 100%;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensures image fits within bounds */
     position: relative;
 }
 
