@@ -112,6 +112,10 @@ footer {
 }
 
 :target {
-    background-color: yellow; /* Highlight element when focused */
-    transition: background-color 1s ease;
+    animation: highlight 2s;
+}
+
+@keyframes highlight {
+    from { background-color: initial; }
+    to { background-color: yellow; }
 }
