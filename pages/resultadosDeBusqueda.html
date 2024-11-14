@@ -51,7 +51,7 @@
                         const distance = levenshteinDistance(searchTerm, content);
 
                         // Show results with exact match or close matches
-                        if (content.includes(searchTerm) || distance <= 1) {
+                        if (content.includes(searchTerm) || distance <= 2) {
                             const snippet = $(this).text().substring(0, 100) + "...";
                             const elementId = $(this).attr("id") || "";  // Grab the element ID (if available)
                             matches.push({
