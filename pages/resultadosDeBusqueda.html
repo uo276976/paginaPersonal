@@ -1,31 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados de Búsqueda</title>
-    <link rel="stylesheet" href="../css/resultados-styles.css" type="text/css">
-    <link rel="stylesheet" href="../css/styles.css" type="text/css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-    <header>
-        <nav aria-label="Menú principal">
-            <a href="#" class="active" aria-current="page">Inicio</a>
-            <a href="pages/aficiones.html">Aficiones</a>
-            <a href="pages/proyectos.html">Proyectos</a>
-            <a href="pages/contacto.html">Contacto</a>
-        </nav>
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Buscar...">
-            <button id="searchButton" onclick="performSearch()">Buscar</button>
-        </div> 
-    </header>    
-
-    <main id="searchResultsContainer">
-        <h1>Resultados de Búsqueda</h1>
-        <!-- Results will be dynamically added here -->
-    </main>
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:5200874,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
     <script>
         $(document).ready(function () {
         // Retrieve search term from the URL
@@ -102,5 +87,38 @@
         return matrix[b.length][a.length];
     }
     </script>
+    <script>
+        function performSearch() {
+            const query = document.getElementById("searchInput").value;
+            if (query) {
+                window.location.href = `/pages/resultadosDeBusqueda.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+    </script> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsqueda</title>
+    <link rel="stylesheet" href="../css/resultados-styles.css" type="text/css">
+    <link rel="stylesheet" href="../css/styles.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav aria-label="Menú principal">
+            <a href="#" class="active" aria-current="page">Inicio</a>
+            <a href="pages/aficiones.html">Aficiones</a>
+            <a href="pages/proyectos.html">Proyectos</a>
+            <a href="pages/contacto.html">Contacto</a>
+        </nav>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar...">
+            <button id="searchButton" onclick="performSearch()">Buscar</button>
+        </div> 
+    </header>    
+
+    <main id="searchResultsContainer">
+        <h1>Resultados de Búsqueda</h1>
+        <!-- Results will be dynamically added here -->
+    </main>
 </body>
 </html>
