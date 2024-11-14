@@ -28,3 +28,45 @@ figcaption {
     margin-top: 0.5em;
     margin-bottom: 3em;
 }
+
+/* Style for the content container */
+.aficiones-header {
+    display: flex;
+    justify-content: space-between; /* Aligns h1 to left and menu to right */
+    align-items: center;
+    margin-bottom: 1em;
+    padding: 1em 2em;
+}
+
+.sidebar-menu {
+    display: flex; /* Horizontal layout for menu items */
+    justify-content: space-between;
+}
+
+.sidebar-menu ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex; /* Align the items horizontally */
+}
+
+.sidebar-menu li {
+    margin-left: 1em;
+    background-color: #036306;
+    border: 0.1em solid #ccc;
+    border-radius: 0.2em;
+    padding: 0.2em 1em;
+}
+
+.sidebar-menu a {
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Style for each section */
+.hobby-section {
+    margin: 2em 0;
+    border: 0.2em solid #ddd;
+    padding: 1em;
+    border-radius: 0.5em;
+}
