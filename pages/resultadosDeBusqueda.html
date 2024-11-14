@@ -91,6 +91,22 @@
                 });
             });
         }
+
+        $('#searchResultsContainer').on('click', 'a', function (event) {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            const targetId = this.getAttribute("href").split("#")[1]; // Get the target ID from the URL hash
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                // Get header height
+                const headerHeight = $('header').outerHeight();
+                // Scroll to the target element, offset by the header height
+                window.scrollTo({
+                    top: targetElement.offsetTop - headerHeight,
+                    behavior: "smooth"
+                });
+            }
+        });
     });
 
     // Levenshtein distance function to find close matches
