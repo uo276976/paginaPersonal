@@ -50,7 +50,7 @@ ul {
     padding-left: 1.5em;
 }
 
-/* Media Query for smaller screens */
+/* Media Query for medium screens */
 @media (max-width: 740px) {
     header {
         flex-direction: row; 
@@ -73,7 +73,7 @@ ul {
     }
 }
 
-/* Media Query for smaller screens */
+/* Media Query for small screens */
 @media (max-width: 380px) {
     header {
         flex-direction: column; /* Stack nav and search bar vertically */
@@ -82,19 +82,17 @@ ul {
 
     .search-bar {
         margin-top: 1em; /* Space between nav and search bar */
-        width: 100%; /* Ensure search bar takes full width of container */
+        width: 100%; /* Search bar takes full width of container */
         flex-direction: row; /* Align input and button horizontally */
     }
 
     .search-bar input[type="text"] {
-        font-size: 1em; /* Reduce font size to fit smaller screens */
         padding: 0.5em; /* Reduce padding */
         width: calc(100% - 2em); /* Adjust width to leave room for the button */
         box-sizing: border-box; /* Ensure padding is included in width */
     }
 
     .search-bar button {
-        font-size: 1em; /* Reduce font size */
         padding: 0.5em; /* Reduce padding */
         margin-left: 0.5em; /* Space between input and button */
     }
@@ -161,16 +159,16 @@ footer {
 .search-bar {
     display: flex;
     align-items: center;
-    height: 2.8em; /* Adjust height as needed */
+    height: 2.8em; 
 }
 
 .search-bar input[type="text"] {
     font-size: 1.2em;
     border: 0.2em solid white;
     border-radius: 0.5em;
-    padding: 0.5em; /* Adjust padding for better alignment */
+    padding: 0.5em; 
     height: 100%;
-    flex-grow: 1; /* Ensures input takes available width */
+    flex-grow: 1; /* Input takes available width */
 }
 
 .search-bar button {
@@ -181,12 +179,11 @@ footer {
     border-radius: 0.5em;
     cursor: pointer;
     margin-left: 0.3em;
-    height: 100%; /* Make the button the same height as the input */
+    height: 100%; /* Button  same height as input */
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 
 :target {
     animation: highlight 3s;
