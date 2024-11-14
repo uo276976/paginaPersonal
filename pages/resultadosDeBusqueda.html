@@ -46,68 +46,79 @@
     </main>
     <script>
         $(document).ready(function () {
-        // Retrieve search term from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const searchTerm = urlParams.get('q')?.toLowerCase();
-        
-        if (searchTerm) {
-            const pages = [
-                'aficiones.html',
-                'proyectos.html',
-                'contacto.html',
-                '../'
-            ];
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchTerm = urlParams.get('q')?.toLowerCase();
+    
+    if (searchTerm) {
+        const pages = ['aficiones.html', 'proyectos.html', 'contacto.html', '../'];
+        pages.forEach(page => {
+            $.get(page, function (data) {
+                const pageContent = $(data);
+                const matches = [];
 
-            pages.forEach(page => {
-                $.get(page, function (data) {
-                    const pageContent = $(data);
-                    const matches = [];
-                    
-                    // Find all paragraphs and headings in the page content
-                    pageContent.find("p, h1, h2, h3, h4, h5, h6, figcaption").each(function () {
-                        const content = $(this).text().toLowerCase();
-                        const distance = levenshteinDistance(searchTerm, content);
+                pageContent.find("p, h1, h2, h3, h4, h5, h6, figcaption").each(function () {
+                    const content = $(this).text().toLowerCase();
+                    const distance = levenshteinDistance(searchTerm, content);
 
-                        // Show results with exact match or close matches
-                        if (content.includes(searchTerm) || distance <= 2) {
-                            const snippet = $(this).text().substring(0, 100) + "...";
-                            const elementId = $(this).attr("id") || "";  // Grab the element ID (if available)
-                            matches.push({
-                                snippet: snippet,
-                                url: `${page}#${elementId}`
-                            });
-                        }
-                    });
-
-                    // Display matches
-                    if (matches.length > 0) {
-                        $('#searchResultsContainer').append(`<h2>Resultados en ${page}</h2>`);
-                        matches.forEach(match => {
-                            $('#searchResultsContainer').append(`
-                                <p><a href="${match.url}">${match.snippet}</a></p>
-                            `);
+                    if (content.includes(searchTerm) || distance <= 2) {
+                        const snippet = $(this).text().substring(0, 100) + "...";
+                        const elementId = $(this).attr("id") || "";  
+                        matches.push({
+                            snippet: snippet,
+                            url: `${page}#${elementId}`
                         });
                     }
                 });
+
+                if (matches.length > 0) {
+                    $('#searchResultsContainer').append(`<h2>Resultados en ${page}</h2>`);
+                    matches.forEach(match => {
+                        $('#searchResultsContainer').append(`
+                            <p><a href="${match.url}">${match.snippet}</a></p>
+                        `);
+                    });
+                }
             });
-        }
+        });
+    }
 
-        $('#searchResultsContainer').on('click', 'a', function (event) {
-            event.preventDefault(); // Prevent the default anchor click behavior
-            const targetId = this.getAttribute("href").split("#")[1]; // Get the target ID from the URL hash
+    $('#searchResultsContainer').on('click', 'a', function (event) {
+        event.preventDefault();
+        const href = this.getAttribute("href");
+        const [targetPage, targetId] = href.split("#");
+
+        if (targetPage && targetPage !== window.location.pathname.split("/").pop()) {
+            // Load the target page dynamically if different
+            $.get(targetPage, function (data) {
+                const pageContent = $(data);
+                const targetElement = pageContent.find(`#${targetId}`);
+                
+                if (targetElement.length) {
+                    // Inject the content if needed
+                    $('main').html(pageContent); // Replace main content with loaded page
+                    
+                    // Adjust scroll for header offset
+                    const headerHeight = $('header').outerHeight();
+                    window.scrollTo({
+                        top: $(`#${targetId}`).offset().top - headerHeight,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        } else {
+            // Scroll within the current page
             const targetElement = document.getElementById(targetId);
-
             if (targetElement) {
-                // Get header height
                 const headerHeight = $('header').outerHeight();
-                // Scroll to the target element, offset by the header height
                 window.scrollTo({
                     top: targetElement.offsetTop - headerHeight,
                     behavior: "smooth"
                 });
             }
-        });
+        }
     });
+});
+
 
     // Levenshtein distance function to find close matches
     function levenshteinDistance(a, b) {
