@@ -197,3 +197,7 @@ footer {
     from { background-color: initial; }
     to { background-color: yellow; }
 }
+
+hr {
+    margin-bottom: 1em;
+}

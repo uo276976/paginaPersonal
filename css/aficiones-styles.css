@@ -29,30 +29,29 @@ figcaption {
     margin-bottom: 3em;
 }
 
-/* Style for the content container */
+/* General layout for header */
 .aficiones-header {
     display: flex;
     justify-content: space-between; /* Aligns h1 to left and menu to right */
     align-items: center;
-    margin-bottom: 1em;
     padding: 1em 2em;
+    position: relative; /* For absolute positioning of the dropdown */
 }
 
+/* Sidebar Menu (horizontal by default) */
 .sidebar-menu {
     display: flex; /* Horizontal layout for menu items */
-    justify-content: space-between;
 }
 
 .sidebar-menu ul {
     list-style-type: none;
     padding: 0;
-    display: flex; /* Align the items horizontally */
+    display: flex;
 }
 
 .sidebar-menu li {
     margin-left: 1em;
     background-color: #036306;
-    border: 0.1em solid #ccc;
     border-radius: 0.2em;
     padding: 0.2em 1em;
 }
@@ -61,12 +60,61 @@ figcaption {
     text-decoration: none;
     font-size: 1.2em;
     font-weight: bold;
+    color: white;
 }
 
-/* Style for each section */
-.hobby-section {
-    margin: 2em 0;
-    border: 0.2em solid #ddd;
-    padding: 1em;
-    border-radius: 0.5em;
+/* Hamburger menu icon (hidden by default) */
+.hamburger-menu {
+    font-size: 1.8em;
+    display: none; /* Hidden initially */
+    cursor: pointer;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 800px) {
+    /* Stack header vertically on small screens */
+    .aficiones-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Hide the sidebar menu by default */
+    .sidebar-menu {
+        display: none;
+        width: 100%; /* Take full width when visible */
+        flex-direction: column; /* Stack items vertically */
+        position: absolute; /* Position menu below hamburger icon */
+        top: 100%; /* Align directly below header */
+        background-color: #036306;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for better visibility */
+    }
+
+    /* Display hamburger menu icon */
+    .hamburger-menu {
+        display: block; /* Visible on small screens */
+    }
+
+    /* Show menu when it has the active class */
+    .sidebar-menu.active {
+        display: flex; /* Make it visible */
+    }
+
+    /* Individual items styling in mobile menu */
+    .sidebar-menu li {
+        margin: 0.5em 0; /* Space between items */
+        padding: 0.5em;
+        border-radius: 0.3em;
+    }
+
+    .sidebar-menu li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 420px) {
+    .hamburger-menu {
+        display: none; 
+    }
 }

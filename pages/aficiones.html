@@ -18,7 +18,8 @@
                 window.location.href = `resultadosDeBusqueda.html?q=${encodeURIComponent(query)}`;
             }
         }
-    </script> 
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aficiones</title>
@@ -41,6 +42,12 @@
     <main>
         <section class="aficiones-header">
             <h1 id="aficiones">Mis Aficiones</h1>
+
+            <!-- Hamburger Menu Icon -->
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                &#9776; <!-- Unicode for hamburger icon -->
+            </div>
+
             <!-- Sidebar Menu -->
             <nav class="sidebar-menu">
                 <ul>
@@ -118,5 +125,10 @@
             </svg>
         </a>
     </footer>    
+    <script>function toggleMenu() {
+        const menu = document.querySelector('.sidebar-menu');
+        menu.classList.toggle('active');
+    }
+    </script>
 </body>
 </html>
