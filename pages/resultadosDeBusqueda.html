@@ -15,7 +15,7 @@
         function performSearch() {
             const query = document.getElementById("searchInput").value;
             if (query) {
-                window.location.href = `/pages/resultadosDeBusqueda.html?q=${encodeURIComponent(query)}`;
+                window.location.href = `resultadosDeBusqueda.html?q=${encodeURIComponent(query)}`;
             }
         }
     </script>  
@@ -29,10 +29,10 @@
 <body>
     <header>
         <nav aria-label="Menú principal">
-            <a href="#" class="active" aria-current="page">Inicio</a>
-            <a href="pages/aficiones.html">Aficiones</a>
-            <a href="pages/proyectos.html">Proyectos</a>
-            <a href="pages/contacto.html">Contacto</a>
+            <a href="../index.html" class="active" aria-current="page">Inicio</a>
+            <a href="aficiones.html">Aficiones</a>
+            <a href="proyectos.html">Proyectos</a>
+            <a href="contacto.html">Contacto</a>
         </nav>
         <div class="search-bar">
             <input type="text" id="searchInput" placeholder="Buscar...">
