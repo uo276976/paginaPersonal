@@ -10,7 +10,6 @@ header {
     background-color: #036306;
     color: white;
     padding: 1em 2em;
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -112,7 +111,7 @@ footer {
 }
 
 :target {
-    animation: highlight 2s;
+    animation: highlight 3s;
 }
 
 @keyframes highlight {
