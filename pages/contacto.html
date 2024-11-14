@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="../css/styles.css" type="text/css">
+    <link rel="stylesheet" href="../css/contacto-styles.css" type="text/css">
+    
     <script>
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -11,6 +17,7 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+
     <script>
         function performSearch() {
             const query = document.getElementById("searchInput").value;
@@ -18,12 +25,7 @@
                 window.location.href = `resultadosDeBusqueda.html?q=${encodeURIComponent(query)}`;
             }
         }
-    </script> 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto</title>
-    <link rel="stylesheet" href="../css/styles.css" type="text/css">
-    <link rel="stylesheet" href="../css/contacto-styles.css" type="text/css">
+    </script>
 </head>
 <body>
     <header>
@@ -39,11 +41,20 @@
         </div> 
     </header>
     <main>
-        <h1 id="contacto-section">Ponte en contacto</h1>
-        <p id="contacto">Dirección de contacto <a href="mailto:uo276976@uniovi.es?Subject=Página%20personal%20Alf">uo276976@uniovi.es</a></p>
+        <section class="contactos-header">
+            <h1 id="contacto-section">Ponte en contacto</h1>
+            <p id="contacto"><strong>Dirección de contacto:</strong> <a href="mailto:uo276976@uniovi.es?Subject=Página%20personal%20Alf">uo276976@uniovi.es</a></p>
+            
+            <p><strong>Ubicación:</strong> Calle Valdés Salas, 11, 33007 Oviedo, Asturias</p>
+        </section>
         <div id="mapa" class="mapa-responsivo">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.073233734748!2d-5.853527684501019!3d43.35476717913216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd368d6e7b1b1b1b%3A0x1f577d1f9f3b1d0c!2sEscuela%20de%20Ingenier%C3%ADa%20Inform%C3%A1tica%20de%20Oviedo!5e0!3m2!1ses!2ses!4v1611810471047!5m2!1ses!2ses" 
-            title="EII Oviedo" allowfullscreen="" loading="lazy"></iframe>
+            <!-- Embedded Google Map with latitude and longitude for the specified address -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.073233734748!2d-5.853527684501019!3d43.35476717913216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd368d6e7b1b1b1b%3A0x1f577d1f9f3b1d0c!2sCalle%20Vald%C3%A9s%20Salas%2C%2011%2C%2033007%20Oviedo%2C%20Asturias!5e0!3m2!1ses!2ses!4v1611810471047!5m2!1ses!2ses" 
+                title="Ubicación en Oviedo" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
         </div>
     </main>     
     <footer>

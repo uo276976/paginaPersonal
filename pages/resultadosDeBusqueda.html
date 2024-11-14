@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsqueda</title>
+    <link rel="stylesheet" href="../css/resultados-styles.css" type="text/css">
+    <link rel="stylesheet" href="../css/styles.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Hotjar Tracking Code -->
     <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:5200874,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        (function(h, o, t, j, a, r) {
+            h.hj = h.hj || function() { (h.hj.q = h.hj.q || []).push(arguments); };
+            h._hjSettings = { hjid: 5200874, hjsv: 6 };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script'); r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
             a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     </script>
+
     <script>
         function performSearch() {
             const query = document.getElementById("searchInput").value;
@@ -18,13 +27,7 @@
                 window.location.href = `resultadosDeBusqueda.html?q=${encodeURIComponent(query)}`;
             }
         }
-    </script>  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados de Búsqueda</title>
-    <link rel="stylesheet" href="../css/resultados-styles.css" type="text/css">
-    <link rel="stylesheet" href="../css/styles.css" type="text/css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </script>
 </head>
 <body>
     <header>
@@ -42,84 +45,88 @@
 
     <main>
         <section id="searchResultsContainer">
-            <h1>Resultados de Búsqueda</h1>
+            <h1 id="searchResultsTitle">Resultados de Búsqueda</h1>
             <!-- Results will be dynamically added here -->
         </section>
     </main>
+
     <script>
-        $(document).ready(function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const searchTerm = urlParams.get('q')?.toLowerCase();
-        
-        if (searchTerm) {
-            const pages = [
-                'aficiones.html',
-                'proyectos.html',
-                'contacto.html',
-                '../'
-            ];
+        $(document).ready(function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = urlParams.get('q')?.toLowerCase();
+            
+            if (searchTerm) {
+                // Update the title to show the search term
+                $('#searchResultsTitle').text(`Resultados de búsqueda: "${searchTerm}"`);
+                
+                const pages = [
+                    'aficiones.html',
+                    'proyectos.html',
+                    'contacto.html',
+                    '../'
+                ];
 
-            pages.forEach(page => {
-                $.get(page, function (data) {
-                    const pageContent = $(data);
-                    const matches = [];
-                    
-                    // Find all paragraphs and headings in the page content
-                    pageContent.find("p, h1, h2, h3, h4, h5, h6, figcaption").each(function () {
-                        const content = $(this).text().toLowerCase();
-                        const distance = levenshteinDistance(searchTerm, content);
+                pages.forEach(page => {
+                    $.get(page, function(data) {
+                        const pageContent = $(data);
+                        const matches = [];
+                        
+                        // Find all paragraphs and headings in the page content
+                        pageContent.find("p, h1, h2, h3, h4, h5, h6, figcaption").each(function() {
+                            const content = $(this).text().toLowerCase();
+                            const distance = levenshteinDistance(searchTerm, content);
 
-                        // Show results with exact match or close matches
-                        if (content.includes(searchTerm) || distance <= 2) {
-                            const snippet = $(this).text().substring(0, 100) + "...";
-                            const elementId = $(this).attr("id") || "";  // Grab the element ID (if available)
-                            matches.push({
-                                snippet: snippet,
-                                url: `${page}#${elementId}`
+                            // Show results with exact match or close matches
+                            if (content.includes(searchTerm) || distance <= 2) {
+                                const snippet = $(this).text().substring(0, 100) + "...";
+                                const elementId = $(this).attr("id") || "";  // Grab the element ID (if available)
+                                matches.push({
+                                    snippet: snippet,
+                                    url: `${page}#${elementId}`
+                                });
+                            }
+                        });
+
+                        // Display matches
+                        if (matches.length > 0) {
+                            $('#searchResultsContainer').append(`<h2>- Resultados en ${page}</h2>`);
+                            matches.forEach(match => {
+                                $('#searchResultsContainer').append(`
+                                    <p><a href="${match.url}">${match.snippet}</a></p>
+                                `);
                             });
                         }
                     });
-
-                    // Display matches
-                    if (matches.length > 0) {
-                        $('#searchResultsContainer').append(`<h2>- Resultados en ${page}</h2>`);
-                        matches.forEach(match => {
-                            $('#searchResultsContainer').append(`
-                                <p><a href="${match.url}">${match.snippet}</a></p>
-                            `);
-                        });
-                    }
                 });
-            });
-        }
-    });
+            }
+        });
 
-    // Levenshtein distance function to find close matches
-    function levenshteinDistance(a, b) {
-        const matrix = [];
-        let i, j;
-        
-        for (i = 0; i <= b.length; i++) {
-            matrix[i] = [i];
-        }
-        for (j = 0; j <= a.length; j++) {
-            matrix[0][j] = j;
-        }
-        for (i = 1; i <= b.length; i++) {
-            for (j = 1; j <= a.length; j++) {
-                if (b.charAt(i - 1) === a.charAt(j - 1)) {
-                    matrix[i][j] = matrix[i - 1][j - 1];
-                } else {
-                    matrix[i][j] = Math.min(
-                        matrix[i - 1][j - 1] + 1,
-                        matrix[i][j - 1] + 1,
-                        matrix[i - 1][j] + 1
-                    );
+        // Levenshtein distance function to find close matches
+        function levenshteinDistance(a, b) {
+            const matrix = [];
+            let i, j;
+            
+            for (i = 0; i <= b.length; i++) {
+                matrix[i] = [i];
+            }
+            for (j = 0; j <= a.length; j++) {
+                matrix[0][j] = j;
+            }
+            for (i = 1; i <= b.length; i++) {
+                for (j = 1; j <= a.length; j++) {
+                    if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
+                    }
                 }
             }
+            return matrix[b.length][a.length];
         }
-        return matrix[b.length][a.length];
-    }
     </script>
 </body>
 </html>
