@@ -66,8 +66,20 @@ main {
     }
 
     .search-bar {
-        width: 95%; 
-        margin-top: 1em;
+        width: auto; 
+        margin: 1em auto 0 1em; /* Margen superior y alineación a la izquierda */
+        display: flex; 
+        justify-content: flex-start; /* Centra horizontalmente sus elementos */
+    }
+
+    .search-bar input[type="text"] {
+        width: 70%; /* Ajusta el ancho del input */
+        margin-right: 0.2em; /* Espaciado con el botón */
+        box-sizing: border-box; 
+    }
+
+    .search-bar button {
+        padding: 0.5em 1em; /* Ajusta el tamaño del botón */
     }
 
     nav {
@@ -81,38 +93,38 @@ main {
     }
 }
 
-/* Media Query for small screens */
 @media (max-width: 380px) {
     header {
-        flex-direction: column; /* Stack nav and search bar vertically */
-        align-items: flex-start; /* Align items to the left */
+        flex-direction: column; 
+        align-items: flex-start; 
     }
 
     .search-bar {
-        margin-top: 1em; /* Space between nav and search bar */
+        margin: 1em 5% 0; /* Centra la barra horizontalmente con espacio en los lados */
         width: 90%;
-        flex-direction: row; /* Align input and button horizontally */
+        display: flex; 
+        justify-content: flex-start;
     }
 
     .search-bar input[type="text"] {
-        padding: 0.5em; /* Reduce padding */
-        width: calc(100% - 2em); /* Adjust width to leave room for the button */
+        padding: 0.5em; 
+        width: 70%;
+        margin-right: 1em; 
         box-sizing: border-box; 
     }
 
     .search-bar button {
-        padding: 0.5em; /* Reduce padding */
-        margin-left: 0.5em; /* Space between input and button */
+        padding: 0.5em;
     }
 
     nav {
-        flex-direction: column; /* Stack nav items vertically */
-        width: 100%; /* Make the nav full width */
+        flex-direction: column;
+        width: 100%; 
     }
 
     nav a {
-        margin-right: 0; /* Remove margin between nav items */
-        margin-bottom: 0.5em; /* Add space between nav items */
+        margin-right: 0; 
+        margin-bottom: 0.5em; 
     }
 }
 
@@ -176,18 +188,18 @@ footer {
     border-radius: 0.5em;
     padding: 0.5em; 
     height: 100%;
-    flex-grow: 1; /* Input takes available width */
+    flex-grow: 1; 
+    margin-right: 0.3em;
 }
 
 .search-bar button {
     font-size: 1.2em;
     background-color: white;
-    color: black; /* Button text color */
+    color: black; 
     border: none;
     border-radius: 0.5em;
     cursor: pointer;
-    margin-left: 0.3em;
-    height: 100%; /* Button  same height as input */
+    height: 100%; 
     display: flex;
     align-items: center;
     justify-content: center;
