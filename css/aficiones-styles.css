@@ -43,6 +43,7 @@ figcaption {
 /* Sidebar Menu (horizontal by default) */
 .sidebar-menu {
     display: flex; /* Horizontal layout for menu items */
+    background-color: #036306;
 }
 
 .sidebar-menu ul {
