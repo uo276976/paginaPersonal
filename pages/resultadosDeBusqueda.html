@@ -51,14 +51,14 @@
     </main>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             const urlParams = new URLSearchParams(window.location.search);
             const searchTerm = urlParams.get('q')?.toLowerCase();
-            
+
             if (searchTerm) {
-                // Update the title to show the search term
-                $('#searchResultsTitle').text(`Resultados de búsqueda: "${searchTerm}"`);
-                
+                $('#searchResultsTitle').text(`Resultados de búsqueda: "${urlParams.get('q')}"`);
+                $('#searchInput').attr('placeholder', urlParams.get('q'));
+
                 const pages = [
                     'aficiones.html',
                     'proyectos.html',
@@ -67,29 +67,35 @@
                 ];
 
                 pages.forEach(page => {
-                    $.get(page, function(data) {
+                    $.get(page, function (data) {
                         const pageContent = $(data);
                         const matches = [];
-                        
-                        // Find all paragraphs and headings in the page content
-                        pageContent.find("p, h1, h2, h3, h4, h5, h6, figcaption").each(function() {
-                            const content = $(this).text().toLowerCase();
-                            const distance = levenshteinDistance(searchTerm, content);
 
-                            // Show results with exact match or close matches
-                            if (content.includes(searchTerm) || distance <= 2) {
-                                const snippet = $(this).text().substring(0, 100) + "...";
-                                const elementId = $(this).attr("id") || "";  // Grab the element ID (if available)
-                                matches.push({
-                                    snippet: snippet,
-                                    url: `${page}#${elementId}`
-                                });
-                            }
+                        // Search through the content
+                        pageContent.find("p, h1, h2, h3, h4, h5, h6, figcaption").each(function () {
+                            const content = $(this).text().toLowerCase();
+
+                            // Tokenize content into words
+                            const words = content.split(/\s+/);
+                            words.forEach(word => {
+                                const distance = levenshteinDistance(searchTerm, word);
+
+                                // Show results with exact match or close matches
+                                if (word.includes(searchTerm) || distance <= 2) {
+                                    matches.push({
+                                        snippet: $(this).text().substring(0, 100) + "...",
+                                        url: `${page}#${$(this).attr("id") || ""}`, // Preserve element ID
+                                        distance: distance
+                                    });
+                                }
+                            });
                         });
+
+                        // Sort matches by relevance (distance) and then by appearance order
+                        matches.sort((a, b) => a.distance - b.distance);
 
                         // Display matches
                         if (matches.length > 0) {
-                            // Replace '../' with 'Inicio' when displaying results
                             const pageTitle = (page === '../') ? 'Inicio' : page;
                             $('#searchResultsContainer').append(`<h2>- Resultados en ${pageTitle}</h2>`);
                             matches.forEach(match => {
@@ -103,26 +109,28 @@
             }
         });
 
-        // Levenshtein distance function to find close matches
         function levenshteinDistance(a, b) {
             const matrix = [];
             let i, j;
-            
+
+            // Initialize the matrix
             for (i = 0; i <= b.length; i++) {
                 matrix[i] = [i];
             }
             for (j = 0; j <= a.length; j++) {
                 matrix[0][j] = j;
             }
+
+            // Fill the matrix
             for (i = 1; i <= b.length; i++) {
                 for (j = 1; j <= a.length; j++) {
                     if (b.charAt(i - 1) === a.charAt(j - 1)) {
                         matrix[i][j] = matrix[i - 1][j - 1];
                     } else {
                         matrix[i][j] = Math.min(
-                            matrix[i - 1][j - 1] + 1,
-                            matrix[i][j - 1] + 1,
-                            matrix[i - 1][j] + 1
+                            matrix[i - 1][j - 1] + 1, // Substitution
+                            matrix[i][j - 1] + 1,     // Insertion
+                            matrix[i - 1][j] + 1      // Deletion
                         );
                     }
                 }
@@ -130,5 +138,19 @@
             return matrix[b.length][a.length];
         }
     </script>
+    <footer>
+        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook" class="social-icon">
+            <svg class="icon icon-facebook" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82V14.706h-3.142v-3.622h3.142V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.465.099 2.797.143v3.24l-1.92.001c-1.505 0-1.796.715-1.796 1.762v2.31h3.586l-.467 3.622h-3.119V24h6.106c.728 0 1.325-.597 1.325-1.324V1.325C24 .597 23.403 0 22.675 0z"/>
+            </svg>
+            <span class="visually-hidden">Facebook</span>
+        </a>
+        <a href="https://www.twitter.com" target="_blank" aria-label="X (Twitter)" class="social-icon">
+            <svg class="icon icon-x" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M23.084 0h-5.289l-5.172 7.569L7.443 0H1.817l7.576 10.703L.032 24h5.291l5.766-8.257L17.452 24h5.515l-9.495-13.002L23.084 0z"/>
+            </svg>
+            <span class="visually-hidden">X (Twitter)</span>
+        </a>
+    </footer>   
 </body>
 </html>
