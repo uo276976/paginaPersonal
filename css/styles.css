@@ -97,7 +97,7 @@ main {
     .search-bar input[type="text"] {
         padding: 0.5em; /* Reduce padding */
         width: calc(100% - 2em); /* Adjust width to leave room for the button */
-        box-sizing: border-box; /* Ensure padding is included in width */
+        box-sizing: border-box; 
     }
 
     .search-bar button {
