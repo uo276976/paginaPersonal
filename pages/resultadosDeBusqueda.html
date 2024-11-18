@@ -84,7 +84,7 @@
 
                         // Display matches
                         if (matches.length > 0) {
-                            const pageTitle = (page === '../') ? 'Inicio' : page.replace('.html', '');
+                            const pageTitle = (page === '../') ? 'Inicio' : page;
                             $('#searchResultsContainer').append(`<h2>- Resultados en ${pageTitle}</h2>`);
                             matches.forEach(match => {
                                 $('#searchResultsContainer').append(`
