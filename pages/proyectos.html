@@ -6,6 +6,14 @@
     <title>Proyectos</title>
     <link rel="stylesheet" href="../css/styles.css" type="text/css">
     <link rel="stylesheet" href="../css/proyectos-styles.css" type="text/css">
+    <script>
+        function performSearch() {
+            const query = document.getElementById("searchInput").value;
+            if (query) {
+                window.location.href = `resultadosDeBusqueda.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
