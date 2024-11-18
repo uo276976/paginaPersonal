@@ -97,32 +97,52 @@
             }
         });
 
+        /**
+         * Calcula la distancia de Levenshtein entre dos cadenas de texto.
+         * La distancia de Levenshtein es una medida de la diferencia entre dos secuencias,
+         * definida como el número mínimo de operaciones necesarias para transformar una secuencia en otra.
+         * Las operaciones permitidas son inserciones, eliminaciones y sustituciones de un solo carácter.
+         *
+         * @param {string} a - La primera cadena de texto.
+         * @param {string} b - La segunda cadena de texto.
+         * @returns {number} - La distancia de Levenshtein entre las dos cadenas.
+         */
         function levenshteinDistance(a, b) {
             const matrix = [];
             let i, j;
 
-            // Initialize the matrix
+            // Inicializa la matriz con dimensiones (b.length + 1) x (a.length + 1)
+            // La primera columna se inicializa con valores de 0 a b.length
             for (i = 0; i <= b.length; i++) {
                 matrix[i] = [i];
             }
+
+            // La primera fila se inicializa con valores de 0 a a.length
             for (j = 0; j <= a.length; j++) {
                 matrix[0][j] = j;
             }
 
-            // Fill the matrix
+            // Rellena la matriz calculando los costos de las operaciones
             for (i = 1; i <= b.length; i++) {
                 for (j = 1; j <= a.length; j++) {
+                    // Si los caracteres son iguales, no hay costo adicional
                     if (b.charAt(i - 1) === a.charAt(j - 1)) {
                         matrix[i][j] = matrix[i - 1][j - 1];
                     } else {
+                        // Si los caracteres son diferentes, calcula el costo mínimo entre:
+                        // - Sustitución: matrix[i - 1][j - 1] + 1
+                        // - Inserción: matrix[i][j - 1] + 1
+                        // - Eliminación: matrix[i - 1][j] + 1
                         matrix[i][j] = Math.min(
-                            matrix[i - 1][j - 1] + 1, // Substitution
-                            matrix[i][j - 1] + 1,     // Insertion
-                            matrix[i - 1][j] + 1      // Deletion
+                            matrix[i - 1][j - 1] + 1, // Sustitución
+                            matrix[i][j - 1] + 1,     // Inserción
+                            matrix[i - 1][j] + 1      // Eliminación
                         );
                     }
                 }
             }
+
+            // Devuelve la distancia de Levenshtein entre las dos cadenas
             return matrix[b.length][a.length];
         }
     </script>
